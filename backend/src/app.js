@@ -1,19 +1,31 @@
 const express = require('express');
 const config = require('./config/config');
-const db = require('./config/database');
+const db = require('./config/database'); 
+const morgan = require('morgan');
+const cors = require('cors');
 const app = express();
-const userRoutes = require('./routes/user');
 
 app.use(express.json());
-app.use('/', userRoutes);
+app.use(cors());
 
-db.sync({ force: false })
-  .then(() => {
-    console.log("Database synced successfully");
+const morganConfig = morgan(
+  ':method :url :status :res[content-length] - :response-time ms'
+);
+app.use(morganConfig);
+
+const studentRoutes = require('./routes/studentRoutes');
+app.use('/api/students', studentRoutes);
+
+db.getConnection((err, connection) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    process.exit(1); 
+  } else {
+    console.log('Database connection established successfully');
+
     app.listen(config.port, () => {
-      console.log(`Server is running at port ${config.port}`);
+      console.log(`Server is running on port ${config.port}`);
     });
-  })
-  .catch(err => {
-    console.log('Error syncing database: ', err);
-  });
+    connection.release();
+  }
+});

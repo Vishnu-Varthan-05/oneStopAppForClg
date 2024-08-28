@@ -1,20 +1,26 @@
-const  { Sequelize }  = require('sequelize');
+const mysql = require('mysql2');
 const config = require('./config');
 
-const db = new Sequelize(config.development.database, config.development.username, config.development.password, {
-    host: config.development.host,
-    dialect:config.development.dialect,
-    logging:config.development.logging
+const pool = mysql.createPool({
+  host: config.development.host,
+  user: config.development.username,
+  password: config.development.password,
+  database: config.development.database,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
 });
 
-(async ()=>{
-    try {
-        await db.authenticate();
-        console.log("Connection established successfully");
-    }catch(error){
-        console.error('Unable to connect to the database:', error);
-    }
-})();
+pool.on('connection', (connection) => {
+  console.log('MySQL connection established');
+});
 
+pool.on('acquire', (connection) => {
+  console.log('MySQL connection acquired');
+});
 
-module.exports = db;
+pool.on('release', (connection) => {
+  console.log('MySQL connection released');
+});
+
+module.exports = pool;
