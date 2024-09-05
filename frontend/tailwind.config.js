@@ -10,7 +10,8 @@ export default {
       'white' : '#E9E4ED',
       'lightpurple':'#9A73B5',
       'grey':"#4A4A4A",
-      'red':"#FF0000"
+      'red':"#FF0000",
+      'lightblack':"#2C2D2D"
     },
     extend: {},
   },
