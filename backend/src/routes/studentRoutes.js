@@ -3,6 +3,7 @@ const { createStudent, loginStudent} = require('../controllers/studentController
 const authenticateToken = require('../middleware/authenticateToken');
 const { getWebinarController } = require('../controllers/webinarController');
 const { getEventController } = require('../controllers/eventController');
+const { getCompetitionController } = require('../controllers/competitionController');
 
 
 const router = express.Router();
@@ -14,5 +15,5 @@ router.use(authenticateToken);
 
 router.get('/webinar', getWebinarController);
 router.get('/event', getEventController);
-
+router.get('/competition', getCompetitionController);
 module.exports = router;
