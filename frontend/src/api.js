@@ -51,4 +51,5 @@ const deleteData = async (url, id) => {
   }
 };
 
+
 export { fetchData, postData, updateData, deleteData };
