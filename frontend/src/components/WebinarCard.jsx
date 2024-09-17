@@ -2,9 +2,9 @@ import WishlistButton from './WishlistButton';
 
 export default function WebinarCard({ webinar }) {
   return (
-    <div className="bg-lightpurple p-6 rounded-lg shadow-md">
+    <div className="bg-purewhite p-6 rounded-lg shadow-sm border border-purple">
       <div className="flex justify-between items-start">
-        <h2 className="text-white text-lg font-bold">
+        <h2 className="text-purple text-lg font-bold">
           {webinar.name || `Webinar ${webinar.id}`}
         </h2>
         <WishlistButton item={webinar} type="webinar" />
