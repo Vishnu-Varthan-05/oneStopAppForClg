@@ -5,6 +5,7 @@ const { getWebinarController } = require('../controllers/webinarController');
 const { getEventController } = require('../controllers/eventController');
 const { getCompetitionController } = require('../controllers/competitionController');
 const { addWishlistController } = require('../controllers/wishlistController');
+const { getTimeTableController } = require('../controllers/timetableController');
 
 
 const router = express.Router();
@@ -17,5 +18,8 @@ router.use(authenticateToken);
 router.get('/webinar', getWebinarController);
 router.get('/event', getEventController);
 router.get('/competition', getCompetitionController);
+router.get('/timetable', getTimeTableController);
+
 router.post('/wishlist', addWishlistController)
+
 module.exports = router;

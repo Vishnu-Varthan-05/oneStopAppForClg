@@ -14,7 +14,9 @@ const morganConfig = morgan(
 app.use(morganConfig);
 
 const studentRoutes = require('./routes/studentRoutes');
+const facultyRoutes = require('./routes/facultyRoutes')
 app.use('/api/students', studentRoutes);
+app.use('/api/faculty', facultyRoutes);
 
 db.getConnection((err, connection) => {
   if (err) {

@@ -1,4 +1,4 @@
-const { get_query_database } = require("../config/database_utils");
+const { get_query_database, post_query_database } = require("../config/database_utils");
 
 exports.getWebinar = async(student, year, department, page=1, limit=20) => {
     try {

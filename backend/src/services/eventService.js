@@ -1,4 +1,4 @@
-const { get_query_database } = require("../config/database_utils");
+const { get_query_database, post_query_database } = require("../config/database_utils");
 
 exports.getEvent = async(student, year, department, page=1, limit=20) => {
     try {
@@ -33,5 +33,63 @@ exports.getEvent = async(student, year, department, page=1, limit=20) => {
         return results;
     } catch (error) {
         throw new Error(`Error retrieving Events: ${error.message}`);
+    }
+}
+
+exports.postWebeve = async (name, conductedBy, venue, date, time, description, type, year, department, expiresAt, facultyId) => {
+    try {
+        const query = `
+            INSERT INTO webeve 
+            (name, organiser, conductedBy, venue, date, time, description, type, year, department, expiresAt) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        
+        const results = await post_query_database(query, [name, facultyId, conductedBy, venue, date, time, description, type, year, department, expiresAt]);
+        return results;
+    } catch (error) {
+        throw new Error(`Error posting webeve: ${error.message}`);
+    }
+}
+
+exports.updateWebeve = async (id, name, conductedBy, venue, date, time, description, type, year, department, expiresAt, facultyId) => {
+    try {
+        const query = `
+            UPDATE webeve 
+            SET 
+                name = ?, 
+                conductedBy = ?, 
+                venue = ?, 
+                date = ?, 
+                time = ?, 
+                description = ?, 
+                type = ?, 
+                year = ?, 
+                department = ?, 
+                expiresAt = ?
+            WHERE 
+                id = ? AND 
+                organiser = ?
+        `;
+        
+        const results = await post_query_database(query, [name, conductedBy, venue, date, time, description, type, year, department, expiresAt, id, facultyId]);
+        return results;
+    } catch (error) {
+        throw new Error(`Error updating webeve: ${error.message}`);
+    }
+}
+
+exports.deleteWebeve = async (id, facultyId) => {
+    try {
+        const query = `
+            DELETE FROM webeve 
+            WHERE 
+                id = ? AND 
+                organiser = ?
+        `;
+        
+        const results = await post_query_database(query, [id, facultyId]);
+        return results;
+    } catch (error) {
+        throw new Error(`Error deleting webeve: ${error.message}`);
     }
 }

@@ -12,7 +12,8 @@ export default {
       'lightpurple':'#9A73B5',
       'grey':"#4A4A4A",
       'red':"#FF0000",
-      'lightblack':"#2C2D2D"
+      'lightblack':"#2C2D2D",
+      'black':"#000000"
     },
     extend: {},
   },
