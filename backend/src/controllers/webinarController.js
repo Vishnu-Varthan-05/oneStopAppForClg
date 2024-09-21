@@ -1,4 +1,4 @@
-const { getWebinar } = require("../services/webinarService");
+const { getWebinar, getWebinarById } = require("../services/webinarService");
 
 exports.getWebinarController = async (req, res) => {
     const { studentYear, studentDepartment , studentId} = req.body;
@@ -15,3 +15,17 @@ exports.getWebinarController = async (req, res) => {
         return res.status(500).json({ message: `Failed to retrieve webinars: ${error.message}` });
     }
 };
+
+exports.getWebinarByIdController = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const webinar = await getWebinarById(id);
+        if (webinar) {
+            res.status(200).json(webinar);
+        } else {
+            res.status(404).json({message: "Webinar not found"});
+        }
+    } catch (error) {
+        res.status(500).json({ message : "Error getting webinar"});
+    }
+}

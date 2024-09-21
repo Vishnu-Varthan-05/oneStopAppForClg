@@ -1,4 +1,4 @@
-const { get_query_database, post_query_database } = require("../config/database_utils");
+const { get_query_database } = require("../config/database_utils");
 
 exports.getCompetition = async(student, year, department, page=1, limit=20)=>{
     try {
@@ -31,5 +31,35 @@ exports.getCompetition = async(student, year, department, page=1, limit=20)=>{
     } catch (error) {
         throw new Error(`Error retrieving Competitions: ${error.message}`);
         
+    }
+}
+
+exports.getCompetitionById = async(id) =>{
+    try {
+        const query = `
+           SELECT 
+                c.id,
+                c.name,
+                f.name AS postedBy,
+                c.hostedby,
+                c.importancelvl,
+                c.reglink,
+                CASE 
+                    WHEN c.type = '0' THEN 'Internal'
+                    ELSE 'External'
+                END AS type,
+                y.name AS year,
+                d.name AS department
+            FROM 
+                competition c
+            LEFT JOIN faculty f ON c.postedBy = f.id
+            LEFT JOIN year y ON c.year = y.id
+            LEFT JOIN department d ON c.department = d.id
+            WHERE c.id = ?
+        `
+        const result = await get_query_database(query, [id]);
+        return result;
+    } catch (error) {
+        throw new Error(`Error retrieving Competitions: ${error.message}`);
     }
 }
