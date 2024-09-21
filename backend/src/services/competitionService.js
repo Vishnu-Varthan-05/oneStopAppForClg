@@ -23,6 +23,7 @@ exports.getCompetition = async(student, year, department, page=1, limit=20)=>{
                 (c.year = 5 AND c.department = 24)
             )
             AND c.expiresAt > NOW()
+            ORDER BY c.importancelvl DESC
             LIMIT ? OFFSET ?
         `;
         const results = await get_query_database(query, [student, year, department, department, year, limit, offset]);
