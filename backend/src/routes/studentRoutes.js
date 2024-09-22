@@ -4,7 +4,7 @@ const authenticateToken = require('../middleware/authenticateToken');
 const { getWebinarController, getWebinarByIdController } = require('../controllers/webinarController');
 const { getEventController, getEventByIdController } = require('../controllers/eventController');
 const { getCompetitionController, getCompetitionByIdController } = require('../controllers/competitionController');
-const { addWishlistController } = require('../controllers/wishlistController');
+const { addWishlistController, getWishlistedEventsController, getWishlistedWebinarsController, getWishlistedCompetitionsController } = require('../controllers/wishlistController');
 const { getTimeTableController } = require('../controllers/timetableController');
 
 
@@ -27,5 +27,7 @@ router.get('/competition/:id', getCompetitionByIdController);
 router.get('/timetable', getTimeTableController);
 
 router.post('/wishlist', addWishlistController)
-
+router.get('/wishlist/event', getWishlistedEventsController)
+router.get('/wishlist/webinar', getWishlistedWebinarsController)
+router.get('/wishlist/competition', getWishlistedCompetitionsController)
 module.exports = router;

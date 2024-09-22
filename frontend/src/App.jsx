@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import AuthRoute from './components/AuthRoute'; 
 import Dashboard from './pages/Dashboard';
 import "./index.css";
+import Wishlist from './pages/Wishlist';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +35,7 @@ function App() {
             <Route path="webinar" element={<AuthRoute element={<Webinar />} requiredUserType="student"/>} />
             <Route path="events" element={<AuthRoute element={<Event />} requiredUserType="student"/>} />
             <Route path="competitions" element={<AuthRoute element={<Competition />} requiredUserType="student"/>} />
+            <Route path="wishlist" element={<AuthRoute element={<Wishlist/>} requiredUserType="student"/>} />
           </Route>
           <Route path="/dashboard" element={<AuthRoute element={<Dashboard />} requiredUserType="faculty" />} />
         </Routes>

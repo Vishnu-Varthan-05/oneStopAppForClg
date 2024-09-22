@@ -10,6 +10,7 @@ export default function Header() {
             <h1 className='text-white text-3xl font-bold'>ONESTOP COLLEGE APP</h1>
           </div>
           <div className="flex items-center space-x-4">
+            <Link to="/wishlist" className='text-lightpurple hover:text-white px-3 py-2 rounded-md text-sm font-medium'>My Wishlist</Link>
             <Link to="/timetable" className='text-lightpurple hover:text-white px-3 py-2 rounded-md text-sm font-medium'>TimeTable</Link>
             <Link to="/webinar" className='text-lightpurple hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Webinars</Link>
             <Link to="/events" className='text-lightpurple hover:text-white px-3 py-2 rounded-md text-sm font-medium'>Events</Link>
