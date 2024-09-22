@@ -8,7 +8,7 @@ exports.createStudent = async (studentData) => {
 
     try {
         const existingStudentQuery = 'SELECT email FROM student WHERE email = ?';
-        const [existingStudentRows] = await get_query_database(existingStudentQuery, [email]);
+        const existingStudentRows = await get_query_database(existingStudentQuery, [email]);
         if (existingStudentRows.length > 0) throw new Error("Student already found");
 
         const hashedPassword = await bcrypt.hash(password, 10);

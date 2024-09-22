@@ -34,7 +34,7 @@ export default function Timetable() {
         onChange={(e) => handleDateChange(new Date(e.target.value))}
         className="bg-purewhite p-2 border border-purple rounded-md w-full mb-4"
       />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
         {data.data.map((timetable, index) => (
           <TimetableCard key={timetable.id} timetable={timetable} />
         ))}

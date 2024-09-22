@@ -16,6 +16,7 @@ export default {
       'black':"#000000"
     },
     extend: {},
+
   },
   plugins: [],
 }

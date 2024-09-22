@@ -1,3 +1,4 @@
+import Modal from "../components/Modal";
+
 export default function Dashboard() {
-    return <p>Hello faculty</p>
 }
