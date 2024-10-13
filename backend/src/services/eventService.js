@@ -65,6 +65,15 @@ exports.getEventById = async (id) => {
     }
 }
 
+exports.getEventCount = async () => {
+    try {
+        const query = 
+            ``
+    } catch (error) {
+        
+    }
+}
+
 exports.postWebeve = async (name, conductedBy, venue, date, time, description, type, year, department, expiresAt, facultyId) => {
     try {
         const query = `

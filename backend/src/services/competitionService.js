@@ -1,4 +1,4 @@
-const { get_query_database } = require("../config/database_utils");
+const { get_query_database , post_query_database} = require("../config/database_utils");
 
 exports.getCompetition = async(student, year, department, page=1, limit=20)=>{
     try {
@@ -63,3 +63,60 @@ exports.getCompetitionById = async(id) =>{
         throw new Error(`Error retrieving Competitions: ${error.message}`);
     }
 }
+
+exports.getCompetitionCount = async() =>{
+    try {
+        const query = ` SELECT 
+                            COUNT(*) AS competitionCount
+                        FROM competition
+                        WHERE competition.expiresAt > NOW()
+                        `;
+        const result = await get_query_database(query);
+        return result;
+    } catch (error) {
+        throw new Error(`Error retrieving Competitions: ${error.message}`);
+    }
+}
+
+exports.postCompetition = async(name, postedby, hostedby, importancelvl, reglink, type, year, department, expiresAt) => {
+    try {
+        const query = `
+            INSERT INTO competition 
+            (name, postedBy, hostedby, importancelvl, reglink, type, year, department, expiresAt)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        `;
+        const params = [name, postedby, hostedby, importancelvl, reglink, type, year, department, expiresAt];
+        const result = await post_query_database(query, params, "Competition posted successfully");
+        return result;
+    } catch (error) {
+        throw new Error(`Error posting competition: ${error.message}`);
+    }
+};
+
+exports.updateCompetition = async(id, name, postedby, hostedby, importancelvl, reglink, type, year, department, expiresAt) => {
+    try {
+        const query = `
+            UPDATE competition
+            SET name = ?, postedBy = ?, hostedby = ?, importancelvl = ?, reglink = ?, type = ?, year = ?, department = ?, expiresAt = ?
+            WHERE id = ?
+        `;
+        const params = [name, postedby, hostedby, importancelvl, reglink, type, year, department, expiresAt, id];
+        const result = await post_query_database(query, params, "Competition updated successfully");
+        return result;
+    } catch (error) {
+        throw new Error(`Error updating competition: ${error.message}`);
+    }
+};
+
+exports.deleteCompetition = async(id) => {
+    try {
+        const query = `
+            DELETE FROM competition
+            WHERE id = ?
+        `;
+        const result = await post_query_database(query, [id], "Competition deleted successfully");
+        return result;
+    } catch (error) {
+        throw new Error(`Error deleting competition: ${error.message}`);
+    }
+};
