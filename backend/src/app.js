@@ -14,10 +14,12 @@ const morganConfig = morgan(
 app.use(morganConfig);
 
 const studentRoutes = require('./routes/studentRoutes');
-const facultyRoutes = require('./routes/facultyRoutes')
+const facultyRoutes = require('./routes/facultyRoutes');
+const generalRoutes = require('./routes/generalRoutes');
+
 app.use('/api/students', studentRoutes);
 app.use('/api/faculty', facultyRoutes);
-
+app.use('/api', generalRoutes);
 db.getConnection((err, connection) => {
   if (err) {
     console.error('Error connecting to the database:', err);

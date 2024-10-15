@@ -64,20 +64,6 @@ exports.getCompetitionById = async(id) =>{
     }
 }
 
-exports.getCompetitionCount = async() =>{
-    try {
-        const query = ` SELECT 
-                            COUNT(*) AS competitionCount
-                        FROM competition
-                        WHERE competition.expiresAt > NOW()
-                        `;
-        const result = await get_query_database(query);
-        return result;
-    } catch (error) {
-        throw new Error(`Error retrieving Competitions: ${error.message}`);
-    }
-}
-
 exports.postCompetition = async(name, postedby, hostedby, importancelvl, reglink, type, year, department, expiresAt) => {
     try {
         const query = `

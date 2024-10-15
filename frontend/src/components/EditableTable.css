@@ -1,0 +1,32 @@
+.custom-table .ant-table-thead > tr > th {
+    background-color: #f7f2ff;
+    color: #61398F; 
+    border: 1px solid #61398F;
+    padding: 16px;
+    
+}
+.ant-table-wrapper .ant-table-container table > thead > tr:first-child > :first-child {
+    border-radius: 0px
+}
+.ant-table-wrapper .ant-table-container table > thead > tr:first-child > :last-child {
+    border-radius: 0px;
+}
+.custom-table .ant-table-tbody > tr > td {
+    border: 1px solid #61398F;
+    padding: 16px;
+}
+  
+.custom-table .ant-table-thead > tr > th:not(:last-child),
+.custom-table .ant-table-tbody > tr > td:not(:last-child) {
+    border-right: 1px solid #61398F;
+}
+  
+
+.custom-table .ant-table-tbody > tr:hover {
+    background-color: #e8e4ff;   
+}
+.custom-table {
+    margin-top: 1rem;
+}
+
+  

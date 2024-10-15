@@ -19,7 +19,6 @@ exports.getEventController = async (req, res) => {
 exports.getEventByIdController = async (req, res)  => {
     try {
         const id = req.params.id;
-        console.log(id)
         const event = await getEventById(id);
         if (event) {
             res.status(200).json(event);

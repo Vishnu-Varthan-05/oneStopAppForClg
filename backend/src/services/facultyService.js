@@ -34,7 +34,6 @@ exports.authenticateFaculty = async (email, password) => {
         `;
         const faculty = await get_query_database(getFacultyQuery, [email]);
         if (faculty.length === 0) throw new Error("No faculty found");
-
         const isMatch = await bcrypt.compare(password, faculty[0].password);
         if (!isMatch) throw new Error("Wrong password");
 

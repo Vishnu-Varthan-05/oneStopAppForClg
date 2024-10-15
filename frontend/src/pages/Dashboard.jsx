@@ -1,4 +1,41 @@
-import Modal from "../components/Modal";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ActiveCard from "../components/ActiveCard";
+import EditableTable from "../components/EditableTable";
+import Button from "../components/Button";
 
 export default function Dashboard() {
+  const [tableType, setTableType] = useState("competitions");
+  const navigate = useNavigate();
+
+  const handleCardClick = (type) => {
+    setTableType(type.toLowerCase() + "s");
+  };
+
+  const handleAddClick = () => {
+    navigate("/addAll");
+  };
+
+  return (
+    <div className="m-2 p-2">
+      <h1 className="text-3xl font-bold text-center text-purple mb-3">
+        Dashboard 🚀
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 rounded-md">
+        <ActiveCard type={"Event"} onClick={() => handleCardClick("Event")} />
+        <ActiveCard
+          type={"Competition"}
+          onClick={() => handleCardClick("Competition")}
+        />
+        <ActiveCard
+          type={"Webinar"}
+          onClick={() => handleCardClick("Webinar")}
+        />
+      </div>
+      <div className="my-4 flex justify-end">
+        <Button onClick={handleAddClick}>Add New</Button>
+      </div>
+      <EditableTable type={tableType} />
+    </div>
+  );
 }
