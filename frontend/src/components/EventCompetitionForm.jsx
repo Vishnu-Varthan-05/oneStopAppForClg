@@ -44,14 +44,13 @@ const EventCompetitionForm = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // Updated mutation to use the correct endpoint based on form type
   const mutation = useMutation({
     mutationFn: () => {
       const endpoint = formType === 'competition' ? 'faculty/competitions' : 'faculty/webevents';
       return postData(endpoint, formData);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(); // Invalidate queries after successful mutation
+      queryClient.invalidateQueries(); 
     },
   });
 

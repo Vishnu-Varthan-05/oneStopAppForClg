@@ -4,6 +4,7 @@ const { getActiveCompetitionsController, getActiveEventsController, getActiveWeb
 const authenticateFacultyToken = require('../middleware/authenticateFacultyToken');
 const { postCompetitionController, updateCompetitionController, deleteCompetitionController } = require('../controllers/competitionController');
 const { postWebeveController, updateWebeveController, deleteWebeveController } = require('../controllers/webeveController');
+const { postTimeTableController, getTimeTableByFaculty } = require('../controllers/timetableController');
 const router = express.Router();
 
 router.post('/signup', createFaculty);
@@ -26,4 +27,6 @@ router.post('/webevents', postWebeveController);
 router.put('/webevents/:id', updateWebeveController);
 router.delete('/webevents/:id', deleteWebeveController);
 
+router.post('/timetable', postTimeTableController);
+router.get('/timetable', getTimeTableByFaculty);
 module.exports = router;

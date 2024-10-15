@@ -12,8 +12,11 @@ export default function Dashboard() {
     setTableType(type.toLowerCase() + "s");
   };
 
-  const handleAddClick = () => {
+  const handleAddCompEveClick = () => {
     navigate("/addAll");
+  };
+  const handleAddTTClick = () =>{
+    navigate("/addTT");
   };
 
   return (
@@ -32,8 +35,9 @@ export default function Dashboard() {
           onClick={() => handleCardClick("Webinar")}
         />
       </div>
-      <div className="my-4 flex justify-end">
-        <Button onClick={handleAddClick}>Add New</Button>
+      <div className="my-4 flex justify-end space-x-5">
+        <Button onClick={handleAddTTClick}>Add new TimeTable</Button>
+        <Button onClick={handleAddCompEveClick}>Add New Competitions and Events/Webinars</Button>
       </div>
       <EditableTable type={tableType} />
     </div>

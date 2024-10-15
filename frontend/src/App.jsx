@@ -13,6 +13,7 @@ import Dashboard from './pages/Dashboard';
 import "./index.css";
 import Wishlist from './pages/Wishlist';
 import AddAll from './pages/AddAll';
+import AddTT from './pages/AddTT';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,7 @@ function App() {
           </Route>
           <Route path="/dashboard" element={<AuthRoute element={<Dashboard />} requiredUserType="faculty" />} />
           <Route path="/addAll" element={<AuthRoute element={<AddAll/>} requiredUserType="faculty" />} />
+          <Route path="/addTT" element={<AuthRoute element={<AddTT/>} requiredUserType="faculty" />} />
         </Routes>
       </Router>
     </QueryClientProvider>
