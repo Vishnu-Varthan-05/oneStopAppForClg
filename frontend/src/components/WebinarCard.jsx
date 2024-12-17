@@ -4,7 +4,7 @@ import { fetchData } from '../api';
 import Modal from '../components/Modal';
 import WishlistButton from './WishlistButton';
 import detailsIcon from '../assets/expand_purple.svg'; 
-
+import NotifyButton from './NotifyButton';
 export default function WebinarCard({ webinar }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isFetched, setIsFetched] = useState(false);
@@ -30,8 +30,9 @@ export default function WebinarCard({ webinar }) {
         <h2 className="text-purple text-lg font-bold">
           {webinar.name || `Webinar ${webinar.id}`}
         </h2>
-        <div className="flex justify-end">
+        <div className="flex-col  justify-end">
           <WishlistButton item={webinar} type="webinar" />
+          <NotifyButton /> 
         </div>
       </div>
       <div className="mt-2 text-lightblack grid grid-cols-2 gap-1">

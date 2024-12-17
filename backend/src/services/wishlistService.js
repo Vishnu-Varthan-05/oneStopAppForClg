@@ -64,6 +64,7 @@ exports.getWishlistedEvents = async (id) => {
       LEFT JOIN webeve e ON ww.webeve = e.id
       WHERE 
         ww.student = ? AND e.type = '1'
+        AND e.expiresAt > NOW()
     `
     const events = await get_query_database(query, [id]);
     return events;
@@ -88,6 +89,7 @@ exports.getWishlistedWebinars = async (id) => {
       LEFT JOIN webeve w ON ww.webeve = w.id
       WHERE 
         ww.student = ? AND w.type = '0'
+        AND w.expiresAt > NOW()
     `
     const webinars = await get_query_database(query, [id]);
     return webinars;
@@ -110,7 +112,8 @@ exports.getWishlistedCompetitions = async (id) => {
       JOIN competition c 
         ON cw.competition = c.id
       WHERE 
-        cw.student = ?;
+        cw.student = ?
+        AND c.expiresAt > NOW()
 
     `;
     const competitions = get_query_database(query, [id]);
